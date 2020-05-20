@@ -20,12 +20,13 @@ router.post('/register', (req, res) => {
             .then(user => {
                 res.status(201).json({ user: user })
             })
-            .catch(err => {
+            .catch(error => {
                 res.status(500).json({ message: error.message })
             })
+        // console.log('this is an error in .add', error);
     } else {
         res.status(400).json({
-            message: 'please provide your username and password'
+            message: 'please provide your username, your password, and department'
         })
     }
 })
@@ -35,7 +36,7 @@ router.post('/login', (req, res) => {
     const { username, password } = req.body;
 
     if (isValid(req.body)) {
-        Users.findBy({ 'users.username': username })
+        Users.findBy({ username })
             .then(([user]) => {
                 if (user && bcryptjs.compareSync(password, user.password)) {
                     const token = createToken(user);
@@ -54,10 +55,10 @@ function createToken(user) {
         username: user.username,
         role: user.role,
     }
-    const secret = process.env.JWT || 'jiowajfiojoifaoisfsjdfladlfkjfdsk'
+    const secret = process.env.JWT_SECRET || 'jiowajfiojoifaoisfsjdfladlfkjfdsk'
 
     const options = {
-        expiresIn: '1h'
+        expiresIn: '2h'
     }
     return jwt.sign(payload, secret, options)
 }

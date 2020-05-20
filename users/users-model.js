@@ -1,6 +1,6 @@
 const db = require("../database/connection.js")
 
-module.export = {
+module.exports = {
     add,
     find,
     findBy,
@@ -17,14 +17,15 @@ function find() {
 function findBy(filter) {
     console.log(filter)
     return db('users')
-        // .join('roles', 'users.role', 'roles.id')
+        .join('roles', 'users.role', 'roles.id')
+        .select('users.id', 'users.username', 'role.name', 'users.password')
         .where('users.username', filter.username)
-    // .select('users.id', 'users.username', 'role.name', 'users.password')
-    // .orderBy('users.id')
+        .orderBy('users.id')
 }
 
 async function add(user) {
     try {
+        console.log("this is async user function", user);
         const [id] = await db('users').insert(user, 'id')
         return findById(id)
     } catch (error) {

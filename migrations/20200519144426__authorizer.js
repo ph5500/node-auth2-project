@@ -4,13 +4,14 @@ exports.up = function (knex) {
         .createTable('roles', tbl => {
             tbl.increments();
             tbl.string('name', 128).notNullable().unique();
-        })//rolls
+        })//roles
 
 
         .createTable('users', tbl => {
             tbl.increments()
             tbl.string('username', 128).notNullable().unique().index()
             tbl.string('password', 256).notNullable();
+            tbl.string('department', 128).notNullable();
 
             tbl.integer('role')
                 .unsigned()
@@ -20,6 +21,8 @@ exports.up = function (knex) {
         })//users
 
 };
+
+
 
 exports.down = function (knex) {
     return knex.schema.dropTableIfExists("roles").dropTableIfExists("users");
