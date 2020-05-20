@@ -54,7 +54,7 @@ function createToken(user) {
         username: user.username,
         role: user.role,
     }
-    const secret = process.env.JWT || 'jiowajfiojoif;aoisfsjd;fladlfkjfdsk'
+    const secret = process.env.JWT || 'jiowajfiojoifaoisfsjdfladlfkjfdsk'
 
     const options = {
         expiresIn: '1h'

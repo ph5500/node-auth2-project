@@ -12,8 +12,5 @@ router.get("/", restricted, (req, res) => {
         .catch(err => res.send(err));
 });
 // only accounts with the admin role can create users
-router.post('/', (req, res) => {
-
-})
 
 module.exports = router;

@@ -14,7 +14,7 @@ function find() {
         .orderBy('users.id')
 }
 
-function findBY(filter) {
+function findBy(filter) {
     console.log(filter)
     return db('users')
         .join('roles', 'users.role', 'roles.id')
