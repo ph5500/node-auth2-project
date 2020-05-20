@@ -9,18 +9,18 @@ module.exports = {
 
 function find() {
     return db('users')
-        .join('roles', 'users.role', 'roles.id')
-        .select('users.id', 'users.username', 'role.name')
-        .orderBy('users.id')
+    // .join('roles', 'users.role', 'roles.id')
+    // .select('users.id', 'users.username', 'role.name')
+    // .orderBy('users.id')
 }
 
 function findBy(filter) {
     console.log(filter)
     return db('users')
-        .join('roles', 'users.role', 'roles.id')
-        .select('users.id', 'users.username', 'role.name', 'users.password')
+        // .join('roles', 'users.role', 'roles.id')
+        // .select('users.id', 'users.username', 'role.name', 'users.password')
         .where('users.username', filter.username)
-        .orderBy('users.id')
+    // .orderBy('users.id')
 }
 
 async function add(user) {

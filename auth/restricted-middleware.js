@@ -7,6 +7,7 @@ module.exports = (req, res, next) => {
 
         jwt.verify(token, secret, (error, decodedToken) => {
             if (error) {
+                console.log("this is an error from verifying token", error);
                 //the token is invalid
                 res.status(401).json({ message: "you shall not pass!" });
             } else {
